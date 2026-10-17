@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuoteFlow — Contractor Estimates</title>
+<style>
+:root{--navy:#14243a;--navy2:#203751;--green:#27b27e;--green2:#e5f7ef;--bg:#f4f7fb;--card:#fff;--text:#1b2b40;--muted:#718096;--line:#e4eaf1;--red:#d94f5c;--amber:#b7791f;--shadow:0 8px 24px rgba(24,45,73,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{min-height:100vh;display:grid;grid-template-columns:245px 1fr}.sidebar{background:var(--navy);color:#fff;padding:25px 16px;display:flex;flex-direction:column;gap:26px}.brand{display:flex;align-items:center;gap:11px;padding:0 10px;font-size:21px;font-weight:800;letter-spacing:-.5px}.brand-mark{width:36px;height:36px;border-radius:11px;background:var(--green);display:grid;place-items:center;color:#fff;font-weight:900}.brand small{display:block;color:#a9bbcd;font-size:10px;font-weight:500;letter-spacing:1.5px;margin-top:-3px}.nav{display:grid;gap:6px}.nav button{border:0;background:transparent;color:#c0ccda;text-align:left;padding:12px 14px;border-radius:10px;display:flex;align-items:center;gap:12px;font-weight:600}.nav button:hover,.nav button.active{background:#2a4059;color:#fff}.nav .ico{width:20px;text-align:center;font-size:17px}.side-bottom{margin-top:auto;border-top:1px solid #34485f;padding:18px 10px 0;color:#a9bbcd;font-size:12px}.side-bottom strong{color:white;display:block;font-size:13px;margin-bottom:4px}.main{min-width:0}.topbar{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px;gap:16px}.topbar-left{display:flex;align-items:center;gap:12px}.eyebrow{font-size:11px;letter-spacing:1.4px;color:var(--muted);font-weight:800;text-transform:uppercase}.topbar h1{font-size:21px;margin:2px 0 0;letter-spacing:-.4px}.top-actions{display:flex;align-items:center;gap:10px}.avatar{height:37px;width:37px;border-radius:50%;display:grid;place-items:center;background:var(--green2);color:#187d58;font-weight:800}.content{padding:30px 34px 50px;max-width:1450px;margin:auto}.welcome{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:25px}.welcome h2{font-size:26px;letter-spacing:-.8px;margin:0 0 5px}.welcome p{margin:0;color:var(--muted)}.btn{border:1px solid var(--line);background:#fff;color:var(--text);padding:10px 15px;border-radius:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.15s}.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}.btn.primary{background:var(--green);border-color:var(--green);color:#fff}.btn.dark{background:var(--navy);border-color:var(--navy);color:#fff}.btn.danger{color:var(--red)}.btn.small{padding:6px 10px;font-size:12px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:24px}.stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:var(--shadow)}.stat-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;font-weight:600}.stat-icon{height:35px;width:35px;border-radius:10px;background:#eef4fb;display:grid;place-items:center;font-size:17px}.stat-value{font-size:29px;letter-spacing:-1px;font-weight:800;margin:13px 0 2px}.stat-note{font-size:12px;color:var(--muted)}.panel{background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:22px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px 22px;border-bottom:1px solid var(--line)}.panel-head h3{margin:0;font-size:16px}.panel-head p{margin:3px 0 0;color:var(--muted);font-size:12px}.tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.field,select,textarea{border:1px solid #dce4ed;border-radius:9px;background:#fff;color:var(--text);padding:10px 12px;outline:none;width:100%;min-width:0}.field:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(39,178,126,.12)}.search{width:240px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;white-space:nowrap}th{text-align:left;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.8px;background:#fbfcfe;padding:13px 22px;font-weight:800}td{padding:16px 22px;border-top:1px solid var(--line);font-size:13px}tbody tr:hover{background:#fbfdfd}.customer{font-weight:750}.subtext{color:var(--muted);font-size:11px;margin-top:3px}.money{font-weight:800}.status{display:inline-flex;border-radius:30px;padding:5px 9px;font-size:11px;font-weight:800}.status.draft{background:#edf1f6;color:#637186}.status.sent{background:#e8f2ff;color:#2867b2}.status.accepted{background:#e2f8ed;color:#16744f}.status.declined{background:#ffebed;color:#b53644}.status.overdue{background:#fff2d9;color:#95610a}.row-actions{display:flex;gap:5px}.empty{padding:45px 20px;text-align:center;color:var(--muted)}.empty strong{display:block;color:var(--text);font-size:16px;margin-bottom:5px}.two-col{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:20px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.form-group{display:flex;flex-direction:column;gap:6px}.form-group.full{grid-column:1/-1}.form-group label{font-size:12px;font-weight:800;color:#4a5b70}.section-label{font-size:12px;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);font-weight:800;margin:4px 0 0}.line-items{width:100%;border-collapse:collapse}.line-items th,.line-items td{padding:9px 6px}.line-items th{background:#fff}.line-items input{min-width:65px;padding:8px}.line-items .desc-input{min-width:150px}.totals{margin-left:auto;max-width:300px;display:grid;gap:8px;padding:15px 0}.total-line{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:13px}.total-line.grand{font-size:19px;font-weight:850;color:var(--text);border-top:1px solid var(--line);padding-top:12px}.preview{padding:24px;background:#fbfcfe;border:1px solid var(--line);border-radius:12px}.preview-head{display:flex;justify-content:space-between;gap:10px;border-bottom:2px solid var(--navy);padding-bottom:16px}.preview h2{margin:0;font-size:22px}.preview p{margin:4px 0;color:var(--muted);font-size:12px}.preview table{margin-top:18px}.preview th,.preview td{padding:10px 5px}.preview th{background:transparent}.preview-foot{font-size:11px;color:var(--muted);margin-top:24px}.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.setting-card{border:1px solid var(--line);border-radius:12px;padding:20px}.setting-card h3{margin:0 0 15px}.setting-card .form-group{margin-bottom:13px}.pricing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.price-card{border:1px solid var(--line);border-radius:14px;padding:23px}.price-card.featured{border:2px solid var(--green)}.price{font-size:33px;font-weight:850;letter-spacing:-1px;margin:8px 0}.price span{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0}.price-card ul{padding-left:20px;color:var(--muted);line-height:2}.notice{border:1px solid #f0dfae;background:#fff9e9;color:#795b15;border-radius:10px;padding:13px 15px;font-size:12px;margin-bottom:18px}.toast{position:fixed;right:22px;bottom:22px;background:var(--navy);color:#fff;padding:13px 18px;border-radius:10px;box-shadow:var(--shadow);z-index:100;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateY(0)}.hidden{display:none!important}.muted{color:var(--muted)}.mobile-menu{display:none}
+@media(max-width:1050px){.app{grid-template-columns:210px 1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.content{padding:24px}.topbar{padding:0 24px}.two-col{grid-template-columns:1fr}}
+@media(max-width:760px){.app{display:block}.sidebar{position:fixed;z-index:50;left:-260px;top:0;bottom:0;width:245px;transition:left .2s;box-shadow:var(--shadow)}.sidebar.open{left:0}.mobile-menu{display:inline-flex}.topbar{height:68px;padding:0 16px}.content{padding:20px 14px 36px}.welcome{align-items:flex-start;flex-direction:column}.welcome h2{font-size:23px}.stats{gap:10px}.stat{padding:14px}.stat-value{font-size:24px}.stat-top{font-size:11px}.stat-icon{width:29px;height:29px}.panel-head{align-items:flex-start;flex-direction:column;padding:17px}.search{width:100%}.tools{width:100%}.tools>*{flex:1}.form-grid,.settings-grid,.pricing-grid{grid-template-columns:1fr}.form-group.full{grid-column:auto}.top-actions .top-plan{display:none}.topbar h1{font-size:18px}.panel-head .tools{flex-direction:column}.panel-head .tools>*{width:100%}.preview{padding:14px}.row-actions{flex-wrap:wrap}}
+@media print{body{background:#fff}.sidebar,.topbar,.no-print,.toast{display:none!important}.app{display:block}.content{padding:0;max-width:none}.panel{box-shadow:none;border:0}.preview{border:0;background:#fff;padding:0}.print-only{display:block!important}}
+
+.auth-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background:linear-gradient(135deg,#f4f7fb,#eaf5f0)}.auth-card{width:min(100%,440px);background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;box-shadow:var(--shadow)}.auth-brand{display:flex;align-items:center;gap:12px;margin-bottom:24px}.auth-brand .brand-mark{width:44px;height:44px}.auth-card h1{font-size:25px;letter-spacing:-.7px;margin:0 0 6px}.auth-card p{color:var(--muted);margin:0 0 22px}.auth-card .form-group{margin-bottom:15px}.auth-message{padding:11px 12px;border-radius:9px;background:#eef4fb;color:#203751;font-size:13px;margin:12px 0;overflow-wrap:anywhere}.auth-links{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px}.auth-link{border:0;background:none;color:#16744f;font-weight:700;padding:4px 0;cursor:pointer}.auth-note{font-size:12px!important;line-height:1.5;margin-top:18px!important;margin-bottom:0!important}
+
+.shared-quote-wrap{min-height:100vh;background:#f4f7fb;padding:28px 14px}.shared-quote{max-width:850px;margin:0 auto;background:#fff;border:1px solid #e4eaf1;border-radius:16px;padding:clamp(18px,4vw,42px);box-shadow:0 8px 24px rgba(24,45,73,.06)}.shared-quote .shared-top{display:flex;justify-content:space-between;gap:18px;border-bottom:2px solid #14243a;padding-bottom:20px;margin-bottom:22px}.shared-quote h1{font-size:28px;margin:0}.shared-quote h2{font-size:17px}.shared-quote .shared-muted{color:#718096;font-size:13px}.shared-quote table{margin-top:20px}.shared-quote th,.shared-quote td{padding:12px 8px}.shared-quote .shared-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}@media print{.shared-quote-wrap{padding:0;background:#fff}.shared-quote{box-shadow:none;border:0;max-width:none}}
+</style>
+</head>
+<body>
+<div id="sharedQuoteScreen" style="display:none"></div>
+<section id="authScreen" class="auth-screen">
+  <div class="auth-card">
+    <div class="auth-brand"><div class="brand-mark">Q</div><div><strong style="font-size:21px">QuoteFlow</strong><div class="eyebrow">CONTRACTOR TOOLS</div></div></div>
+    <h1 id="authTitle">Welcome back</h1>
+    <p id="authSubtitle">Sign in to access your QuoteFlow workspace.</p>
+    <form id="authForm">
+      <div class="form-group"><label for="authEmail">Email address</label><input class="field" id="authEmail" type="email" autocomplete="email" required placeholder="you@business.com"></div>
+      <div class="form-group" id="authPasswordGroup"><label for="authPassword">Password</label><input class="field" id="authPassword" type="password" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters"></div>
+      <button class="btn primary" id="authSubmit" type="submit" style="width:100%;margin-top:4px">Sign in</button>
+    </form>
+    <div id="authMessage" class="auth-message hidden" role="status" aria-live="polite"></div>
+    <div class="auth-links"><button class="auth-link" id="authToggle" type="button">Create an account</button><button class="auth-link" id="authReset" type="button">Forgot password?</button></div>
+    <p class="auth-note">Account access is being connected first. Your existing estimate editor is still a prototype; the next step is connecting estimates to secure cloud storage.</p>
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  function qfDecodeShare(){try{const m=location.hash.match(/(?:^#|&)quote=([A-Za-z0-9_-]+)/);if(!m)return null;let b=m[1].replace(/-/g,'+').replace(/_/g,'/');b+='='.repeat((4-b.length%4)%4);return JSON.parse(decodeURIComponent(escape(atob(b))))}catch(e){return null}}
+  function qfEscape(v=''){return String(v).replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]))}
+  function qfMoney(v){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(Number(v)||0)}
+  function qfDate(v){if(!v)return '—';const d=new Date(v+'T12:00:00');return Number.isNaN(d.getTime())?v:d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+  const shared = qfDecodeShare();
+  const quoteToken = new URLSearchParams(location.search).get('quote');
+  const QF_SUPABASE_URL = 'https://hptcsbiirrtdyaajszny.supabase.co';
+  const QF_SUPABASE_PUBLIC_KEY = 'sb_publishable_k8qLdG42_n6zMR-0FgVWpQ_P_WsySfU';
+  if(quoteToken){
+    document.getElementById('authScreen').style.display='none';
+    document.querySelector('.app').style.display='none';
+    const root=document.getElementById('sharedQuoteScreen');root.style.display='block';
+    root.innerHTML='<div class="shared-quote-wrap"><article class="shared-quote"><h1>Loading estimate…</h1><p class="shared-muted">Please wait while QuoteFlow loads this secure share link.</p></article></div>';
+    (async()=>{
+      try{
+        if(!window.supabase?.createClient) throw new Error('Could not load QuoteFlow. Check your internet connection and refresh.');
+        const client=window.supabase.createClient(QF_SUPABASE_URL,QF_SUPABASE_PUBLIC_KEY);
+        const {data:result,error}=await client.rpc('quoteflow_get_shared_quote',{p_token:quoteToken});
+        if(error) throw error;
+        const sharedData=result?.quote_data?result:{quote_data:result};
+        const payload=sharedData.quote_data;
+        if(!payload?.estimate) throw new Error('This estimate link is invalid or has been removed. Ask the contractor for a new link.');
+        const e=payload.estimate,s=payload.business||{},items=Array.isArray(e.items)?e.items:[];
+        const subtotal=items.reduce((sum,x)=>sum+Math.max(0,Number(x.qty)||0)*Math.max(0,Number(x.price)||0),0);
+        const discount=Math.min(subtotal,Math.max(0,Number(e.discount)||0));const tax=Math.max(0,subtotal-discount)*Math.max(0,Number(e.tax)||0)/100;const total=subtotal-discount+tax;
+        const response=sharedData.response||'Pending';
+        root.innerHTML=`<div class="shared-quote-wrap"><article class="shared-quote"><div class="shared-top"><div><h1>${qfEscape(s.name||'Your Business')}</h1><div class="shared-muted">${qfEscape(s.email||'')}${s.phone?' · '+qfEscape(s.phone):''}</div><div class="shared-muted">${qfEscape(s.address||'')}</div></div><div style="text-align:right"><div class="eyebrow">ESTIMATE</div><h2>${qfEscape(e.number||'Quote')}</h2><div class="shared-muted">Date: ${qfDate(e.date)}</div><div class="shared-muted">Valid until: ${qfDate(e.expiry)}</div></div></div><h2>Prepared for ${qfEscape(e.customerName||'Customer')}</h2><div class="shared-muted">${qfEscape(e.customerEmail||'')}</div><div class="shared-muted">${qfEscape(e.customerAddress||'')}</div><table><thead><tr><th>Description</th><th>Qty</th><th>Unit price</th><th style="text-align:right">Total</th></tr></thead><tbody>${items.map(x=>`<tr><td>${qfEscape(x.description||'Service')}</td><td>${Number(x.qty)||0}</td><td>${qfMoney(x.price)}</td><td style="text-align:right">${qfMoney((Number(x.qty)||0)*(Number(x.price)||0))}</td></tr>`).join('')}</tbody></table><div class="totals"><div class="total-line"><span>Subtotal</span><strong>${qfMoney(subtotal)}</strong></div><div class="total-line"><span>Discount</span><strong>−${qfMoney(discount)}</strong></div><div class="total-line"><span>Tax</span><strong>${qfMoney(tax)}</strong></div><div class="total-line grand"><span>Total</span><strong>${qfMoney(total)}</strong></div></div>${e.notes?`<h2>Notes</h2><p>${qfEscape(e.notes).replace(/\n/g,'<br>')}</p>`:''}${e.terms?`<h2>Payment terms</h2><p>${qfEscape(e.terms).replace(/\n/g,'<br>')}</p>`:''}<div id="qfResponseStatus" class="notice" style="margin-top:20px">Current response: <strong>${qfEscape(response)}</strong></div><div class="shared-actions no-print">${response==='Pending'?'<button class="btn primary" id="qfAccept">✓ Accept estimate</button><button class="btn danger" id="qfDecline">✕ Decline estimate</button>':''}${response==='Accepted'?'<button class="btn primary" id="qfPayNow">Pay Now</button>':''}<button class="btn" onclick="window.print()">Print / Save PDF</button></div><p class="shared-muted" style="margin-top:18px">This unique link grants access to this estimate. Anyone who receives the link may view it.</p></article></div>`;
+        async function startCheckout(){
+          const button=document.getElementById('qfPayNow');
+          if(!button)return;
+          button.disabled=true;button.textContent='Opening secure checkout…';
+          try{
+            const paymentResponse=await fetch(QF_SUPABASE_URL+'/functions/v1/quoteflow-create-payment',{
+              method:'POST',
+              headers:{'Content-Type':'application/json','apikey':QF_SUPABASE_PUBLIC_KEY,'Authorization':'Bearer '+QF_SUPABASE_PUBLIC_KEY},
+              body:JSON.stringify({token:quoteToken})
+            });
+            const result=await paymentResponse.json().catch(()=>({}));
+            if(!paymentResponse.ok||!result.url)throw new Error(result.error||'Could not start checkout. Please contact the contractor.');
+            if(!result.url.startsWith('https://checkout.stripe.com/'))throw new Error('Checkout returned an unexpected payment link.');
+            window.location.assign(result.url);
+          }catch(err){alert(err.message||'Unable to open checkout. Please try again.');button.disabled=false;button.textContent='Pay Now';console.error('QuoteFlow checkout error:',err)}
+        }
+        async function respond(value){const btns=[document.getElementById('qfAccept'),document.getElementById('qfDecline')].filter(Boolean);btns.forEach(b=>b.disabled=true);try{const {data:out,error:rpcError}=await client.rpc('quoteflow_respond_to_quote',{p_token:quoteToken,p_response:value});if(rpcError)throw rpcError;const status=out?.response||value;document.getElementById('qfResponseStatus').innerHTML='Your response was recorded: <strong>'+qfEscape(status)+'</strong>';document.querySelector('.shared-actions').innerHTML=(status==='Accepted'?'<button class="btn primary" id="qfPayNow">Pay Now</button>':'')+'<button class="btn" onclick="window.print()">Print / Save PDF</button>';document.getElementById('qfPayNow')?.addEventListener('click',startCheckout);}catch(err){btns.forEach(b=>b.disabled=false);alert('Could not record your response. Please try again or contact the contractor.');console.error(err)}}
+        document.getElementById('qfAccept')?.addEventListener('click',()=>respond('Accepted'));
+        document.getElementById('qfPayNow')?.addEventListener('click',startCheckout);
+        document.getElementById('qfDecline')?.addEventListener('click',()=>{if(confirm('Are you sure you want to decline this estimate?'))respond('Declined')});
+      }catch(err){root.innerHTML='<div class="shared-quote-wrap"><article class="shared-quote"><h1>Estimate unavailable</h1><p>'+qfEscape(err.message||'Could not load this estimate.')+'</p></article></div>';console.error(err)}
+    })();
+    return;
+  }
+  if(shared && shared.version===1 && shared.estimate){
+    document.getElementById('authScreen').style.display='none';
+    document.querySelector('.app').style.display='none';
+    const root=document.getElementById('sharedQuoteScreen');root.style.display='block';
+    root.innerHTML='<div class="shared-quote-wrap"><article class="shared-quote"><h1>Old share link</h1><p>This older link is view-only. Create a new share link from your QuoteFlow dashboard to enable response tracking.</p></article></div>';
+    return;
+  }
+  // Supabase project URL and publishable key.
+  const SUPABASE_URL = 'https://hptcsbiirrtdyaajszny.supabase.co';
+  const SUPABASE_PUBLIC_KEY = 'sb_publishable_k8qLdG42_n6zMR-0FgVWpQ_P_WsySfU';
+  const authScreen = document.getElementById('authScreen');
+  const app = document.querySelector('.app');
+  const authForm = document.getElementById('authForm');
+  const authTitle = document.getElementById('authTitle');
+  const authSubtitle = document.getElementById('authSubtitle');
+  const authPassword = document.getElementById('authPassword');
+  const authPasswordGroup = document.getElementById('authPasswordGroup');
+  const authSubmit = document.getElementById('authSubmit');
+  const authToggle = document.getElementById('authToggle');
+  const authReset = document.getElementById('authReset');
+  const authMessage = document.getElementById('authMessage');
+  let mode = 'signin';
+  let supabaseClient = null;
+  window.quoteFlowUser = null;
+  const ready = new Promise(resolve => { window.resolveQuoteFlowAuth = resolve; });
+  window.quoteFlowAuthReady = ready;
+  function message(text) { authMessage.textContent = text; authMessage.classList.remove('hidden'); }
+  function setMode(next) {
+    mode = next; authMessage.classList.add('hidden');
+    const reset = mode === 'reset';
+    authTitle.textContent = mode === 'signup' ? 'Create your account' : reset ? 'Reset your password' : 'Welcome back';
+    authSubtitle.textContent = mode === 'signup' ? 'Create a QuoteFlow login to get started.' : reset ? 'We will email you a password reset link.' : 'Sign in to access your QuoteFlow workspace.';
+    authSubmit.textContent = mode === 'signup' ? 'Create account' : reset ? 'Send reset link' : 'Sign in';
+    authToggle.textContent = mode === 'signup' ? 'Already have an account? Sign in' : 'Create an account';
+    authReset.classList.toggle('hidden', reset || mode === 'signup');
+    authPasswordGroup.classList.toggle('hidden', reset);
+    authPassword.required = !reset;
+  }
+  function configReady() {
+    return SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('PASTE_') && SUPABASE_PUBLIC_KEY && !SUPABASE_PUBLIC_KEY.includes('PASTE_');
+  }
+  async function init() {
+    if (!configReady()) {
+      message('Setup needed: add your Supabase Project URL and publishable (or anon) key in index.html.');
+      authScreen.classList.remove('hidden'); app.style.display = 'none'; window.resolveQuoteFlowAuth(null); return;
+    }
+    if (!window.supabase || !window.supabase.createClient) {
+      message('Could not load the Supabase library. Check your internet connection and refresh.');
+      app.style.display = 'none'; window.resolveQuoteFlowAuth(null); return;
+    }
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY);
+    window.quoteFlowSupabase = supabaseClient;
+    const { data, error } = await supabaseClient.auth.getSession();
+    if (error) message('Could not check your session: ' + error.message);
+    if (data && data.session) {
+      window.quoteFlowUser = data.session.user;
+      authScreen.classList.add('hidden'); app.style.display = '';
+    } else {
+      authScreen.classList.remove('hidden'); app.style.display = 'none';
+    }
+    window.resolveQuoteFlowAuth(window.quoteFlowUser);
+    supabaseClient.auth.onAuthStateChange((_event, session) => {
+      window.quoteFlowUser = session ? session.user : null;
+      if (session) { authScreen.classList.add('hidden'); app.style.display = ''; window.dispatchEvent(new Event('quoteFlowUserReady')); }
+      else { app.style.display = 'none'; authScreen.classList.remove('hidden'); }
+    });
+  }
+  authToggle.addEventListener('click', () => setMode(mode === 'signup' ? 'signin' : 'signup'));
+  authReset.addEventListener('click', () => setMode('reset'));
+  authForm.addEventListener('submit', async event => {
+    event.preventDefault(); authSubmit.disabled = true; authMessage.classList.add('hidden');
+    try {
+      if (!supabaseClient) { message('First add your Supabase URL and public key to index.html, then refresh.'); return; }
+      const email = document.getElementById('authEmail').value.trim();
+      const password = authPassword.value;
+      let result;
+      if (mode === 'signup') result = await supabaseClient.auth.signUp({ email, password, options: { emailRedirectTo: location.href.split('#')[0] } });
+      else if (mode === 'reset') result = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo: location.href.split('#')[0] });
+      else result = await supabaseClient.auth.signInWithPassword({ email, password });
+      if (result.error) throw result.error;
+      if (mode === 'signup') message('Account request submitted. If email confirmation is enabled in Supabase, open the confirmation email, then return here and sign in.');
+      else if (mode === 'reset') message('If an account exists for that email, a password reset link has been sent.');
+      else if (result.data && result.data.session) { window.quoteFlowUser = result.data.session.user; authScreen.classList.add('hidden'); app.style.display = ''; window.dispatchEvent(new Event('quoteFlowUserReady')); }
+      else message('Request completed. Check your email for the next step.');
+    } catch (error) { message(error.message || 'Something went wrong. Please try again.'); }
+    finally { authSubmit.disabled = false; }
+  });
+  setMode('signin');
+  init().catch(error => { message('Supabase setup error: ' + (error.message || error)); app.style.display = 'none'; window.resolveQuoteFlowAuth(null); });
+});
+</script>
+<div class="app" style="display:none">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-mark">Q</div><div>QuoteFlow<small>CONTRACTOR TOOLS</small></div></div>
+    <nav class="nav" id="nav">
+      <button class="active" data-page="dashboard"><span class="ico">▦</span> Dashboard</button>
+      <button data-page="estimates"><span class="ico">▤</span> Estimates</button>
+      <button data-page="customers"><span class="ico">♙</span> Customers</button>
+      <button data-page="followups"><span class="ico">↗</span> Follow-up assistant</button>
+      <button data-page="settings"><span class="ico">⚙</span> Business settings</button>
+      <button data-page="pricing"><span class="ico">◇</span> Plans & pricing</button>
+    </nav>
+    <div class="side-bottom"><strong id="sideBusiness">Your Business</strong>Simple estimates. Better follow-ups.<br><br>Prototype · Data saved in this browser</div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-left"><button class="btn mobile-menu" id="menuBtn" aria-label="Open navigation">☰</button><div><div class="eyebrow">WORKSPACE</div><h1 id="pageTitle">Dashboard</h1></div></div>
+      <div class="top-actions"><button class="btn top-plan" data-go="pricing">Free plan · 3 estimates/mo</button><button class="btn" id="logoutBtn" type="button">Log out</button><div class="avatar" id="avatar" title="Signed-in account">Y</div></div>
+    </header>
+    <div class="content">
+      <section id="page-dashboard" class="page">
+        <div class="welcome"><div><h2>Good work starts with a great quote.</h2><p>Here's what's happening with your estimates.</p></div><button class="btn primary" data-action="new-estimate">＋ Create estimate</button></div>
+        <div class="stats">
+          <div class="stat"><div class="stat-top">Total estimates <span class="stat-icon">▤</span></div><div class="stat-value" id="statTotal">0</div><div class="stat-note">All estimates created</div></div>
+          <div class="stat"><div class="stat-top">Awaiting response <span class="stat-icon">◷</span></div><div class="stat-value" id="statPending">0</div><div class="stat-note">Draft or sent estimates</div></div>
+          <div class="stat"><div class="stat-top">Accepted <span class="stat-icon">✓</span></div><div class="stat-value" id="statAccepted">0</div><div class="stat-note">Approved by customers</div></div>
+          <div class="stat"><div class="stat-top">Accepted value <span class="stat-icon">＄</span></div><div class="stat-value" id="statValue">$0</div><div class="stat-note">Value of accepted estimates</div></div>
+        </div>
+        <div class="panel"><div class="panel-head"><div><h3>Recent estimates</h3><p>Keep track of your latest quotes.</p></div><button class="btn" data-go="estimates">View all estimates →</button></div><div id="recentTable"></div></div>
+        <div class="panel"><div class="panel-head"><div><h3>Quick start</h3><p>Get QuoteFlow ready for your business.</p></div></div><div style="padding:20px;display:flex;gap:12px;flex-wrap:wrap"><button class="btn" data-go="settings">⚙ Set up your business</button><button class="btn" data-action="new-estimate">＋ Create your first estimate</button><button class="btn" data-go="followups">↗ Prepare a follow-up</button></div></div>
+      </section>
+      <section id="page-estimates" class="page hidden">
+        <div class="welcome"><div><h2>Estimates</h2><p>Create, manage, and track customer quotes.</p></div><button class="btn primary" data-action="new-estimate">＋ Create estimate</button></div>
+        <div class="panel"><div class="panel-head"><div><h3>All estimates</h3><p id="estimateCount">Your estimates appear here.</p></div><div class="tools"><input id="estimateSearch" class="field search" placeholder="Search customer or estimate…"><select id="statusFilter" style="width:150px"><option value="all">All statuses</option><option>Draft</option><option>Sent</option><option>Accepted</option><option>Declined</option></select></div></div><div id="allEstimates"></div></div>
+      </section>
+      <section id="page-customers" class="page hidden">
+        <div class="welcome"><div><h2>Customers</h2><p>Manage saved customer records and create estimates for them.</p></div><button class="btn primary" data-action="add-customer">＋ Add customer</button></div>
+        <div class="panel"><div class="panel-head"><div><h3>Customer directory</h3><p>Customer records sync with your QuoteFlow workspace.</p></div><input id="customerSearch" class="field search" placeholder="Search customers…"></div><div id="customersTable"></div></div>
+      </section>
+      <section id="page-followups" class="page hidden">
+        <div class="welcome"><div><h2>Follow-up assistant</h2><p>Prepare a thoughtful message for estimates awaiting a response.</p></div></div>
+        <div class="notice">Messages are generated locally and copied for you to send. QuoteFlow does not automatically send texts or emails.</div>
+        <div class="two-col"><div class="panel"><div class="panel-head"><div><h3>Choose an estimate</h3><p>Select a draft or sent estimate.</p></div></div><div style="padding:20px"><div class="form-group"><label for="followEstimate">Estimate</label><select id="followEstimate"></select></div><div class="form-group" style="margin-top:15px"><label for="followTone">Tone</label><select id="followTone"><option value="friendly">Friendly</option><option value="professional">Professional</option><option value="brief">Brief and casual</option></select></div><div class="form-group" style="margin-top:15px"><label for="followChannel">Message type</label><select id="followChannel"><option value="text">Text message</option><option value="email">Email</option></select></div><button class="btn primary" id="generateFollow" style="margin-top:18px;width:100%">Generate message</button></div></div><div class="panel"><div class="panel-head"><div><h3>Your message</h3><p>Review and edit before sending.</p></div></div><div style="padding:20px"><textarea id="followMessage" rows="9" placeholder="Choose an estimate and generate a message…"></textarea><button class="btn" id="copyFollow" style="margin-top:12px;width:100%">Copy message</button></div></div></div>
+      </section>
+      <section id="page-settings" class="page hidden">
+        <div class="welcome"><div><h2>Business settings</h2><p>Personalize your estimates with your business details.</p></div><button class="btn primary" id="saveSettings">Save settings</button></div>
+        <div class="settings-grid">
+          <div class="setting-card"><h3>Business profile</h3><div class="form-group"><label for="bizName">Business name</label><input class="field" id="bizName" placeholder="e.g. GreenLine Lawn Care"></div><div class="form-group"><label for="bizEmail">Business email</label><input class="field" id="bizEmail" type="email" placeholder="you@business.com"></div><div class="form-group"><label for="bizPhone">Phone number</label><input class="field" id="bizPhone" placeholder="(555) 123-4567"></div><div class="form-group"><label for="bizAddress">Business address</label><textarea class="field" id="bizAddress" rows="2" placeholder="Street, city, state"></textarea></div></div>
+          <div class="setting-card"><h3>Estimate defaults</h3><div class="form-group"><label for="bizTax">Default tax rate (%)</label><input class="field" id="bizTax" type="number" min="0" max="100" step=".01"></div><div class="form-group"><label for="bizExpiry">Estimate valid for (days)</label><input class="field" id="bizExpiry" type="number" min="1" max="365"></div><div class="form-group"><label for="bizTerms">Default payment terms</label><textarea class="field" id="bizTerms" rows="3" placeholder="e.g. Payment due upon completion."></textarea></div><p class="muted" style="font-size:12px">Settings are saved only in this browser in this prototype.</p></div>
+        </div>
+        <div class="panel" style="margin-top:20px"><div class="panel-head"><div><h3>Demo data</h3><p>Sample estimates help you explore the app. Clear them when you're ready.</p></div></div><div style="padding:20px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="loadDemo">Load sample data</button><button class="btn danger" id="clearData">Delete all local data</button></div></div>
+      </section>
+      <section id="page-pricing" class="page hidden">
+        <div class="welcome"><div><h2>Plans & pricing</h2><p>Start free. Upgrade when your business needs more.</p></div></div>
+        <div class="notice">Prototype mode: no payments are collected and no subscription is activated on this page.</div>
+        <div class="pricing-grid"><div class="price-card"><span class="status sent">CURRENT DEMO PLAN</span><h3>Free</h3><div class="price">$0 <span>/ forever</span></div><p class="muted">For trying out QuoteFlow.</p><ul><li>Up to 3 estimates per month</li><li>Estimate builder and print view</li><li>Basic customer tracking</li></ul><button class="btn" disabled>Current plan</button></div><div class="price-card featured"><span class="status accepted">FOR BUSY OPERATORS</span><h3>Pro</h3><div class="price">$12 <span>/ month</span></div><p class="muted">For contractors who quote regularly.</p><ul><li>Unlimited estimates</li><li>Saved customer records</li><li>Follow-up assistant</li><li>Business branding and reports (planned)</li></ul><button class="btn primary" id="upgradeBtn">Join Pro waitlist</button><p class="muted" style="font-size:11px">This demo button does not charge you.</p></div></div>
+      </section>
+      <section id="page-editor" class="page hidden">
+        <div class="welcome"><div><h2 id="editorHeading">Create estimate</h2><p>Build a clear quote your customer can understand.</p></div><div class="tools no-print"><button class="btn" data-go="estimates">Cancel</button><button class="btn primary" id="saveEstimate">Save estimate</button></div></div>
+        <div class="two-col"><div class="panel"><div class="panel-head"><div><h3>Estimate details</h3><p>Required fields are marked with an asterisk.</p></div></div><div style="padding:20px"><form id="estimateForm"><input type="hidden" id="editId"><div class="form-grid"><div class="form-group"><label for="customerName">Customer name *</label><input class="field" id="customerName" required placeholder="Alex Morgan"></div><div class="form-group"><label for="customerEmail">Customer email</label><input class="field" id="customerEmail" type="email" placeholder="alex@example.com"></div><div class="form-group"><label for="customerPhone">Customer phone</label><input class="field" id="customerPhone" placeholder="(555) 555-5555"></div><div class="form-group"><label for="estimateDate">Estimate date</label><input class="field" id="estimateDate" type="date"></div><div class="form-group full"><label for="customerAddress">Service address</label><input class="field" id="customerAddress" placeholder="123 Main Street, Richmond, VA"></div><div class="form-group"><label for="estimateStatus">Status</label><select id="estimateStatus"><option>Draft</option><option>Sent</option><option>Accepted</option><option>Declined</option></select></div><div class="form-group"><label for="estimateExpiry">Valid until</label><input class="field" id="estimateExpiry" type="date"></div></div>
+          <div class="section-label" style="margin-top:24px">Services & pricing</div><div style="overflow-x:auto;margin-top:8px"><table class="line-items"><thead><tr><th style="min-width:150px">Description</th><th>Qty</th><th>Price</th><th>Total</th><th></th></tr></thead><tbody id="lineItems"></tbody></table></div><button type="button" class="btn small" id="addLine" style="margin-top:10px">＋ Add line item</button>
+          <div class="form-grid" style="margin-top:18px"><div class="form-group"><label for="estimateDiscount">Discount ($)</label><input class="field" id="estimateDiscount" type="number" min="0" step=".01" value="0"></div><div class="form-group"><label for="estimateTax">Tax (%)</label><input class="field" id="estimateTax" type="number" min="0" max="100" step=".01" value="0"></div><div class="form-group full"><label for="estimateNotes">Notes for customer</label><textarea class="field" id="estimateNotes" rows="3" placeholder="Scope of work, scheduling details, exclusions…"></textarea></div><div class="form-group full"><label for="estimateTerms">Payment terms</label><textarea class="field" id="estimateTerms" rows="2" placeholder="Payment due upon completion."></textarea></div></div>
+          <div class="totals"><div class="total-line"><span>Subtotal</span><strong id="subtotalOut">$0.00</strong></div><div class="total-line"><span>Discount</span><strong id="discountOut">−$0.00</strong></div><div class="total-line"><span>Tax</span><strong id="taxOut">$0.00</strong></div><div class="total-line grand"><span>Total</span><strong id="totalOut">$0.00</strong></div></div>
+        </form></div></div>
+        <div class="panel"><div class="panel-head"><div><h3>Live preview</h3><p>This is how the printed estimate will look.</p></div><button class="btn small no-print" id="printPreview">Print / Save PDF</button></div><div style="padding:20px"><div class="preview" id="estimatePreview"></div></div></div></div>
+      </section>
+    </div>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(async () => {
+  let user = await window.quoteFlowAuthReady;
+  if (!user) {
+    user = await new Promise(resolve => {
+      if (window.quoteFlowUser) resolve(window.quoteFlowUser);
+      else window.addEventListener('quoteFlowUserReady', () => resolve(window.quoteFlowUser), { once: true });
+    });
+  }
+  if (!user) return;
+  const $ = id => document.getElementById(id);
+  const KEY = 'quoteflow_v1_data_' + user.id;
+  const defaultSettings = {name:'Your Business',email:'',phone:'',address:'',tax:0,expiry:14,terms:'Payment due upon completion.'};
+  let data = loadData(), currentPage = 'dashboard', lineItems = [], toastTimer;
+  function loadData(){try{const d=JSON.parse(localStorage.getItem(KEY));return d&&Array.isArray(d.estimates)?{...d,customers:Array.isArray(d.customers)?d.customers:[],settings:{...defaultSettings,...(d.settings||{})}}:{estimates:[],customers:[],settings:{...defaultSettings}}}catch{return {estimates:[],customers:[],settings:{...defaultSettings}}}}
+  let cloudSaveTimer = null;
+  function persist(){
+    localStorage.setItem(KEY,JSON.stringify(data));
+    renderAll();
+    clearTimeout(cloudSaveTimer);
+    cloudSaveTimer = setTimeout(saveWorkspaceToCloud, 500);
+  }
+  async function saveWorkspaceToCloud(){
+    const client = window.quoteFlowSupabase;
+    if(!client || !user?.id) return;
+    const snapshot = JSON.parse(JSON.stringify(data));
+    const { error } = await client.from('quoteflow_workspaces').upsert({
+      user_id: user.id,
+      data: snapshot,
+      updated_at: new Date().toISOString()
+    }, { onConflict: 'user_id' });
+    if(error){
+      console.error('QuoteFlow cloud save failed:', error);
+      showToast('Saved on this device, but cloud sync failed. Check the Supabase setup.');
+    }
+  }
+  async function loadWorkspaceFromCloud(){
+    const client = window.quoteFlowSupabase;
+    if(!client || !user?.id) return;
+    const { data: row, error } = await client.from('quoteflow_workspaces')
+      .select('data')
+      .eq('user_id', user.id)
+      .maybeSingle();
+    if(error){
+      console.error('QuoteFlow cloud load failed:', error);
+      showToast('Cloud storage is not set up yet. Run the SQL setup step.');
+      return;
+    }
+    if(row && row.data && Array.isArray(row.data.estimates)){
+      data = { ...row.data, settings: { ...defaultSettings, ...(row.data.settings || {}) } };
+      localStorage.setItem(KEY, JSON.stringify(data));
+    } else {
+      // First cloud login: copy this account's existing browser data to the cloud.
+      await saveWorkspaceToCloud();
+    }
+  }
+  function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(Number(n)||0)}
+  function escapeHtml(v=''){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+  function dateStr(v){if(!v)return '—';const d=new Date(v+'T12:00:00');return Number.isNaN(d.getTime())?v:d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+  function today(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+  function addDays(days){const d=new Date();d.setDate(d.getDate()+(Number(days)||14));return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+  function calc(items=lineItems,discount=$('estimateDiscount')?.value||0,tax=$('estimateTax')?.value||0){const subtotal=items.reduce((s,x)=>s+Math.max(0,Number(x.qty)||0)*Math.max(0,Number(x.price)||0),0);const disc=Math.min(subtotal,Math.max(0,Number(discount)||0));const taxable=Math.max(0,subtotal-disc);const taxAmt=taxable*Math.max(0,Number(tax)||0)/100;return {subtotal,discount:disc,tax:taxAmt,total:taxable+taxAmt}}
+  function estimateTotal(e){return calc(e.items||[],e.discount,e.tax).total}
+  function showToast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2600)}
+  function setPage(page){currentPage=page;document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));$('page-'+page)?.classList.remove('hidden');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));const names={dashboard:'Dashboard',estimates:'Estimates',customers:'Customers','followups':'Follow-up assistant',settings:'Business settings',pricing:'Plans & pricing',editor:$('editId').value?'Edit estimate':'Create estimate'};$('pageTitle').textContent=names[page]||'QuoteFlow';$('sidebar').classList.remove('open');if(page==='followups')renderFollowSelect();if(page==='settings')fillSettings();if(page==='editor')updatePreview();window.scrollTo({top:0,behavior:'smooth'})}
+  function statusClass(s){return String(s||'Draft').toLowerCase()}
+  function badge(s){return `<span class="status ${statusClass(s)}">${escapeHtml(s||'Draft')}</span>`}
+  function tableHtml(items,limit=false){if(!items.length)return `<div class="empty"><strong>No estimates yet</strong>Create your first estimate to see it here.<br><button class="btn primary" style="margin-top:14px" data-action="new-estimate">＋ Create estimate</button></div>`;const rows=(limit?items.slice(0,5):items).map(e=>`<tr><td><div class="customer">${escapeHtml(e.customerName||'Unnamed customer')}</div><div class="subtext">${escapeHtml(e.number||'')}</div></td><td>${dateStr(e.date)}</td><td class="money">${money(estimateTotal(e))}</td><td>${badge(e.status)}</td><td><div class="row-actions"><button class="btn small" data-action="edit" data-id="${escapeHtml(e.id)}">Edit</button><button class="btn small" data-action="print" data-id="${escapeHtml(e.id)}" title="Print estimate">Print</button><button class="btn small" data-action="share" data-id="${escapeHtml(e.id)}" title="Create customer quote link">Share</button><button class="btn small danger" data-action="delete" data-id="${escapeHtml(e.id)}" title="Delete estimate">×</button></div></td></tr>`).join('');return `<div class="table-wrap"><table><thead><tr><th>Customer / estimate</th><th>Date</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>${rows}</tbody></table></div>`}
+  function renderDashboard(){const es=data.estimates;const accepted=es.filter(e=>e.status==='Accepted');$('statTotal').textContent=es.length;$('statPending').textContent=es.filter(e=>['Draft','Sent'].includes(e.status)).length;$('statAccepted').textContent=accepted.length;$('statValue').textContent=money(accepted.reduce((s,e)=>s+estimateTotal(e),0));$('recentTable').innerHTML=tableHtml([...es].sort((a,b)=>(b.updatedAt||'').localeCompare(a.updatedAt||'')).slice(0,5),true)}
+  function renderEstimates(){const q=($('estimateSearch')?.value||'').toLowerCase();const st=$('statusFilter')?.value||'all';const list=data.estimates.filter(e=>(`${e.customerName} ${e.number} ${e.customerEmail}`.toLowerCase().includes(q))&&(st==='all'||e.status===st)).sort((a,b)=>(b.updatedAt||'').localeCompare(a.updatedAt||''));$('estimateCount').textContent=`${list.length} estimate${list.length===1?'':'s'}`;$('allEstimates').innerHTML=tableHtml(list)}
+  function customers(){const map=new Map();(data.customers||[]).forEach(c=>map.set(c.id,{...c,count:0,total:0,last:''}));data.estimates.forEach(e=>{const key=(e.customerEmail||e.customerPhone||e.customerName||'Unknown').toLowerCase();let existing=[...map.values()].find(c=>(c.email||c.phone||c.name||'').toLowerCase()===key);if(!existing){existing={id:'estimate-customer-'+key,name:e.customerName||'Unnamed',email:e.customerEmail||'',phone:e.customerPhone||'',address:e.customerAddress||'',count:0,total:0,last:''};map.set(existing.id,existing)}existing.count++;existing.total+=estimateTotal(e);if((e.date||'')>(existing.last||''))existing.last=e.date});return [...map.values()].sort((a,b)=>(a.name||'').localeCompare(b.name||''))}
+  function addCustomer(existing=null){const name=prompt('Customer name:',existing?.name||'');if(name===null)return;if(!name.trim()){showToast('Customer name is required');return}const email=prompt('Customer email (optional):',existing?.email||'');if(email===null)return;const phone=prompt('Customer phone (optional):',existing?.phone||'');if(phone===null)return;const address=prompt('Service address (optional):',existing?.address||'');if(address===null)return;if(email.trim()&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())){showToast('Enter a valid email address');return}if(existing){data.customers=data.customers.map(c=>c.id===existing.id?{...c,name:name.trim(),email:email.trim(),phone:phone.trim(),address:address.trim()}:c)}else{data.customers.push({id:'cust_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),name:name.trim(),email:email.trim(),phone:phone.trim(),address:address.trim(),createdAt:new Date().toISOString()})}persist();showToast(existing?'Customer updated':'Customer saved')}
+  function renderCustomers(){const q=($('customerSearch')?.value||'').toLowerCase();const list=customers().filter(c=>`${c.name} ${c.email} ${c.phone}`.toLowerCase().includes(q));$('customersTable').innerHTML=list.length?`<div class="table-wrap"><table><thead><tr><th>Customer</th><th>Contact</th><th>Estimates</th><th>Total quoted</th><th>Last estimate</th><th>Actions</th></tr></thead><tbody>${list.map(c=>`<tr><td><div class="customer">${escapeHtml(c.name)}</div><div class="subtext">${escapeHtml(c.address||'')}</div></td><td>${escapeHtml(c.email||'—')}<div class="subtext">${escapeHtml(c.phone||'')}</div></td><td>${c.count}</td><td class="money">${money(c.total)}</td><td>${dateStr(c.last)}</td><td><div class="row-actions"><button class="btn small" data-action="new-for-customer" data-name="${escapeHtml(c.name)}" data-email="${escapeHtml(c.email||'')}" data-phone="${escapeHtml(c.phone||'')}" data-address="${escapeHtml(c.address||'')}">New estimate</button>${String(c.id).startsWith('cust_')?`<button class="btn small" data-action="edit-customer" data-id="${escapeHtml(c.id)}">Edit</button><button class="btn small danger" data-action="delete-customer" data-id="${escapeHtml(c.id)}">Delete</button>`:''}</div></td></tr>`).join('')}</tbody></table></div>`:`<div class="empty"><strong>No customers found</strong>Click “Add customer” to create your first saved customer.</div>`}
+  function renderAll(){renderDashboard();if($('page-estimates'))renderEstimates();renderCustomers();$('sideBusiness').textContent=data.settings.name||'Your Business';$('avatar').textContent=(data.settings.name||'Y').trim().charAt(0).toUpperCase()||'Y';if(currentPage==='followups')renderFollowSelect()}
+  function fillSettings(){const s=data.settings;$('bizName').value=s.name||'';$('bizEmail').value=s.email||'';$('bizPhone').value=s.phone||'';$('bizAddress').value=s.address||'';$('bizTax').value=s.tax??0;$('bizExpiry').value=s.expiry??14;$('bizTerms').value=s.terms||''}
+  function saveSettings(){data.settings={name:$('bizName').value.trim()||'Your Business',email:$('bizEmail').value.trim(),phone:$('bizPhone').value.trim(),address:$('bizAddress').value.trim(),tax:Math.max(0,Number($('bizTax').value)||0),expiry:Math.max(1,Number($('bizExpiry').value)||14),terms:$('bizTerms').value.trim()};persist();showToast('Business settings saved')}
+  function addLine(item={description:'',qty:1,price:0}){lineItems.push({...item});renderLines()}
+  function renderLines(){const body=$('lineItems');body.innerHTML=lineItems.map((x,i)=>`<tr><td><input class="field desc-input" data-line="${i}" data-key="description" aria-label="Item description" value="${escapeHtml(x.description)}" placeholder="Lawn mowing"></td><td><input class="field" data-line="${i}" data-key="qty" aria-label="Quantity" type="number" min="0" step=".01" value="${Number(x.qty)||0}"></td><td><input class="field" data-line="${i}" data-key="price" aria-label="Unit price" type="number" min="0" step=".01" value="${Number(x.price)||0}"></td><td class="money" id="lineTotal${i}">${money((Number(x.qty)||0)*(Number(x.price)||0))}</td><td><button type="button" class="btn small danger" data-action="remove-line" data-index="${i}" aria-label="Remove line item">×</button></td></tr>`).join('');updateTotals();updatePreview()}
+  function updateTotals(){const c=calc();$('subtotalOut').textContent=money(c.subtotal);$('discountOut').textContent='−'+money(c.discount);$('taxOut').textContent=money(c.tax);$('totalOut').textContent=money(c.total);lineItems.forEach((x,i)=>{const el=$('lineTotal'+i);if(el)el.textContent=money((Number(x.qty)||0)*(Number(x.price)||0))})}
+  function getForm(){return {id:$('editId').value||('qf_'+Date.now()+'_'+Math.random().toString(36).slice(2,7)),number:'',customerName:$('customerName').value.trim(),customerEmail:$('customerEmail').value.trim(),customerPhone:$('customerPhone').value.trim(),customerAddress:$('customerAddress').value.trim(),date:$('estimateDate').value||today(),expiry:$('estimateExpiry').value,status:$('estimateStatus').value,items:lineItems.map(x=>({description:x.description,qty:Math.max(0,Number(x.qty)||0),price:Math.max(0,Number(x.price)||0)})),discount:Math.max(0,Number($('estimateDiscount').value)||0),tax:Math.max(0,Number($('estimateTax').value)||0),notes:$('estimateNotes').value.trim(),terms:$('estimateTerms').value.trim(),updatedAt:new Date().toISOString()}}
+  function openEditor(e=null,customer=null){$('estimateForm').reset();$('editId').value=e?.id||'';$('editorHeading').textContent=e?'Edit estimate':'Create estimate';$('customerName').value=e?.customerName||customer?.name||'';$('customerEmail').value=e?.customerEmail||customer?.email||'';$('customerPhone').value=e?.customerPhone||customer?.phone||'';$('customerAddress').value=e?.customerAddress||customer?.address||'';$('estimateDate').value=e?.date||today();$('estimateStatus').value=e?.status||'Draft';$('estimateExpiry').value=e?.expiry||addDays(data.settings.expiry);$('estimateDiscount').value=e?.discount??0;$('estimateTax').value=e?.tax??data.settings.tax;$('estimateNotes').value=e?.notes||'';$('estimateTerms').value=e?.terms??data.settings.terms;lineItems=(e?.items?.length?e.items.map(x=>({...x})): [{description:'',qty:1,price:0}]);renderLines();setPage('editor')}
+  function updatePreview(){const p=$('estimatePreview');if(!p)return;const s=data.settings;const name=$('customerName')?.value.trim()||'Customer name';const date=$('estimateDate')?.value||today();const items=lineItems;const c=calc();const num=$('editId')?.value?((data.estimates.find(e=>e.id===$('editId').value)||{}).number||''): 'New estimate';p.innerHTML=`<div class="preview-head"><div><h2>${escapeHtml(s.name||'Your Business')}</h2><p>${escapeHtml(s.email)}${s.phone?' · '+escapeHtml(s.phone):''}</p><p>${escapeHtml(s.address).replace(/\n/g,'<br>')}</p></div><div style="text-align:right"><div class="eyebrow">ESTIMATE</div><strong>${escapeHtml(num||'Draft')}</strong><p>Date: ${dateStr(date)}</p><p>Valid until: ${dateStr($('estimateExpiry')?.value)}</p></div></div><div style="margin-top:17px"><div class="eyebrow">PREPARED FOR</div><strong>${escapeHtml(name)}</strong><p>${escapeHtml($('customerEmail')?.value||'')}</p><p>${escapeHtml($('customerPhone')?.value||'')}</p><p>${escapeHtml($('customerAddress')?.value||'')}</p></div><table><thead><tr><th>Description</th><th>Qty</th><th>Price</th><th style="text-align:right">Total</th></tr></thead><tbody>${items.map(x=>`<tr><td>${escapeHtml(x.description||'Service')}</td><td>${Number(x.qty)||0}</td><td>${money(x.price)}</td><td style="text-align:right">${money((Number(x.qty)||0)*(Number(x.price)||0))}</td></tr>`).join('')}</tbody></table><div class="totals"><div class="total-line"><span>Subtotal</span><strong>${money(c.subtotal)}</strong></div><div class="total-line"><span>Discount</span><strong>−${money(c.discount)}</strong></div><div class="total-line"><span>Tax</span><strong>${money(c.tax)}</strong></div><div class="total-line grand"><span>Total</span><strong>${money(c.total)}</strong></div></div>${$('estimateNotes')?.value?`<div style="margin-top:12px"><strong>Notes</strong><p>${escapeHtml($('estimateNotes').value).replace(/\n/g,'<br>')}</p></div>`:''}${$('estimateTerms')?.value?`<div style="margin-top:12px"><strong>Payment terms</strong><p>${escapeHtml($('estimateTerms').value).replace(/\n/g,'<br>')}</p></div>`:''}<div class="preview-foot">Thank you for the opportunity to earn your business.</div>`}
+  function saveEstimate(){const form=$('estimateForm');if(!form.reportValidity())return;if(!lineItems.length){showToast('Add at least one line item');return}const e=getForm();if(!e.items.some(x=>x.description.trim())){showToast('Add a description to at least one item');return}const old=data.estimates.find(x=>x.id===e.id);e.number=old?.number||`Q-${String(Date.now()).slice(-6)}`;if(old){data.estimates=data.estimates.map(x=>x.id===e.id?e:x)}else{if(data.estimates.length>=3){showToast('Demo limit reached. Pro plan is not active in this prototype.');return}data.estimates.push(e)}persist();showToast(old?'Estimate updated':'Estimate saved');setPage('estimates')}
+  function deleteEstimate(id){const e=data.estimates.find(x=>x.id===id);if(!e)return;if(confirm(`Delete estimate for ${e.customerName}? This cannot be undone.`)){data.estimates=data.estimates.filter(x=>x.id!==id);persist();showToast('Estimate deleted')}}
+async function shareEstimate(id) {
+  const e = data.estimates.find(x => x.id === id);
+  if (!e) return;
+
+  const client = window.quoteFlowSupabase;
+
+  if (!client) {
+    showToast('Cloud connection is not ready. Refresh and try again.');
+    return;
+  }
+
+  const token = crypto.randomUUID();
+
+  const payload = {
+    version: 2,
+    business: {
+      name: data.settings.name,
+      email: data.settings.email,
+      phone: data.settings.phone,
+      address: data.settings.address
+    },
+    estimate: {
+      id: e.id,
+      number: e.number,
+      customerName: e.customerName,
+      customerEmail: e.customerEmail,
+      customerAddress: e.customerAddress,
+      date: e.date,
+      expiry: e.expiry,
+      items: e.items,
+      discount: e.discount,
+      tax: e.tax,
+      notes: e.notes,
+      terms: e.terms,
+      status: e.status
+    }
+  };
+
+  const { error } = await client
+    .from('quoteflow_public_quotes')
+    .insert({
+      token,
+      user_id: user.id,
+      quote_data: payload,
+      response: 'Pending'
+    });
+
+  if (error) {
+    console.error(error);
+    showToast('Could not create share link. Check your Supabase setup.');
+    return;
+  }
+
+  // Build a clean URL without old query parameters or fragments.
+  const shareUrl = new URL(window.location.origin + window.location.pathname);
+  shareUrl.searchParams.set('quote', token);
+
+  const link = shareUrl.toString();
+
+  try {
+    await navigator.clipboard.writeText(link);
+    showToast('Secure quote link copied!');
+  } catch {
+    prompt('Copy this customer quote link:', link);
+  }
+}
+
+  function renderFollowSelect(){const select=$('followEstimate');if(!select)return;const prev=select.value;const list=data.estimates.filter(e=>['Draft','Sent'].includes(e.status));select.innerHTML=list.length?list.map(e=>`<option value="${escapeHtml(e.id)}">${escapeHtml(e.customerName)} · ${escapeHtml(e.number)} · ${money(estimateTotal(e))}</option>`).join(''):'<option value="">No pending estimates</option>';if(list.some(e=>e.id===prev))select.value=prev}
+  function generateFollow(){const e=data.estimates.find(x=>x.id===$('followEstimate').value);if(!e){showToast('Create a draft or sent estimate first');return}const tone=$('followTone').value,channel=$('followChannel').value;const first=(e.customerName||'there').trim().split(/\s+/)[0];const biz=data.settings.name||'our team';let msg;if(tone==='professional')msg=`Hello ${first}, I’m following up on estimate ${e.number} for ${money(estimateTotal(e))}. Please let us know if you have any questions or would like to discuss the proposed work. Thank you, ${biz}.`;else if(tone==='brief')msg=`Hi ${first}! Just checking whether you had a chance to review our ${money(estimateTotal(e))} estimate. Happy to answer any questions! — ${biz}`;else msg=`Hi ${first}! Hope you're doing well. I wanted to check in on the estimate we sent for ${money(estimateTotal(e))}. Let me know if you have any questions or would like to move forward. Thanks! — ${biz}`;if(channel==='email')msg=`Subject: Following up on estimate ${e.number}\n\n${msg}\n\nEstimate date: ${dateStr(e.date)}`;$('followMessage').value=msg;showToast('Follow-up message generated')}
+  function loadDemo(){if(data.estimates.length&&!confirm('Add sample estimates to your existing data?'))return;const samples=[{customerName:'Taylor Brooks',customerEmail:'taylor@example.com',customerPhone:'(804) 555-0142',customerAddress:'123 Oak Street, Richmond, VA',items:[{description:'Lawn mowing — front and back',qty:1,price:55},{description:'Edge walkways',qty:1,price:15}],status:'Sent',date:today(),expiry:addDays(14),discount:0,tax:0,notes:'Includes mowing and edging. Clippings will be blown off hard surfaces.',terms:'Payment due upon completion.'},{customerName:'Jordan Lee',customerEmail:'jordan@example.com',customerPhone:'(804) 555-0198',customerAddress:'48 Pine Avenue, Chester, VA',items:[{description:'Driveway pressure washing',qty:1,price:140},{description:'Front walkway',qty:1,price:35}],status:'Accepted',date:today(),expiry:addDays(14),discount:10,tax:0,notes:'Customer to ensure driveway is clear before service.',terms:'Payment due upon completion.'},{customerName:'Morgan Davis',customerEmail:'morgan@example.com',customerPhone:'(804) 555-0121',customerAddress:'9 Maple Court, Colonial Heights, VA',items:[{description:'Full exterior wash',qty:1,price:225}],status:'Draft',date:today(),expiry:addDays(14),discount:0,tax:0,notes:'Standard exterior soft wash.',terms:'Payment due upon completion.'}];samples.forEach((s,i)=>data.estimates.push({...s,id:'demo_'+Date.now()+'_'+i,number:`Q-DEMO${i+1}`,updatedAt:new Date(Date.now()+i*1000).toISOString()}));persist();showToast('Sample estimates loaded')}
+  document.addEventListener('click',ev=>{const nav=ev.target.closest('[data-page]');if(nav){setPage(nav.dataset.page);return}const go=ev.target.closest('[data-go]');if(go){setPage(go.dataset.go);return}const a=ev.target.closest('[data-action]');if(!a)return;const act=a.dataset.action,id=a.dataset.id;if(act==='add-customer')addCustomer();if(act==='edit-customer'){const c=(data.customers||[]).find(x=>x.id===id);if(c)addCustomer(c)}if(act==='delete-customer'){const c=(data.customers||[]).find(x=>x.id===id);if(c&&confirm(`Delete customer ${c.name}? Existing estimates will be kept.`)){data.customers=data.customers.filter(x=>x.id!==id);persist();showToast('Customer deleted')}}if(act==='new-estimate')openEditor();if(act==='edit'){const e=data.estimates.find(x=>x.id===id);if(e)openEditor(e)}if(act==='delete')deleteEstimate(id);if(act==='print')printEstimate(id);if(act==='share')shareEstimate(id);if(act==='remove-line'){lineItems.splice(Number(a.dataset.index),1);renderLines()}if(act==='new-for-customer')openEditor(null,{name:a.dataset.name,email:a.dataset.email,phone:a.dataset.phone,address:a.dataset.address})});
+  $('menuBtn').addEventListener('click',()=>$('sidebar').classList.toggle('open'));
+  $('logoutBtn').addEventListener('click', async () => {
+    const btn = $('logoutBtn');
+    btn.disabled = true;
+    btn.textContent = 'Logging out…';
+    try {
+      const client = window.quoteFlowSupabase;
+      if (!client) throw new Error('Authentication is not ready. Refresh and try again.');
+      const { error } = await client.auth.signOut();
+      if (error) throw error;
+      // Reload only after the user explicitly logs out, so the app starts cleanly at login.
+      window.location.reload();
+    } catch (error) {
+      btn.disabled = false;
+      btn.textContent = 'Log out';
+      showToast(error.message || 'Could not log out. Please try again.');
+    }
+  });
+  $('addLine').addEventListener('click',()=>addLine());
+  $('lineItems').addEventListener('input',ev=>{const t=ev.target;if(t.dataset.line===undefined)return;const i=Number(t.dataset.line),key=t.dataset.key;if(!lineItems[i])return;lineItems[i][key]=key==='description'?t.value:Math.max(0,Number(t.value)||0);updateTotals();updatePreview()});
+  ['customerName','customerEmail','customerPhone','customerAddress','estimateDate','estimateExpiry','estimateStatus','estimateDiscount','estimateTax','estimateNotes','estimateTerms'].forEach(id=>$(id).addEventListener('input',()=>{updateTotals();updatePreview()}));
+  $('saveEstimate').addEventListener('click',saveEstimate);
+  $('printPreview').addEventListener('click',()=>window.print());
+  $('saveSettings').addEventListener('click',saveSettings);
+  $('estimateSearch').addEventListener('input',renderEstimates);$('statusFilter').addEventListener('change',renderEstimates);$('customerSearch').addEventListener('input',renderCustomers);
+  $('generateFollow').addEventListener('click',generateFollow);
+  $('copyFollow').addEventListener('click',async()=>{const txt=$('followMessage').value;if(!txt){showToast('Generate or write a message first');return}try{await navigator.clipboard.writeText(txt);showToast('Message copied')}catch{$('followMessage').select();document.execCommand('copy');showToast('Message copied')}});
+  $('loadDemo').addEventListener('click',loadDemo);
+  $('clearData').addEventListener('click',()=>{if(confirm('Delete all QuoteFlow data saved in this browser?')){data={estimates:[],customers:[],settings:{...defaultSettings}};persist();fillSettings();showToast('Local data deleted')}});
+  $('upgradeBtn').addEventListener('click',()=>{const email=prompt('Join the QuoteFlow Pro waitlist. Enter your email (optional):');if(email===null)return;const entries=JSON.parse(localStorage.getItem('quoteflow_waitlist')||'[]');if(email.trim()&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())){showToast('Please enter a valid email');return}if(email.trim())entries.push({email:email.trim(),date:new Date().toISOString()});localStorage.setItem('quoteflow_waitlist',JSON.stringify(entries));showToast(email.trim()?'Added to this browser’s demo waitlist':'No email entered')});
+  await loadWorkspaceFromCloud();
+  await syncQuoteResponses();
+  fillSettings();renderAll();setPage('dashboard');
+  async function syncQuoteResponses(){
+    const client=window.quoteFlowSupabase;if(!client||!user?.id)return;
+    const {data:rows,error}=await client.from('quoteflow_public_quotes').select('quote_data,response').eq('user_id',user.id);
+    if(error){console.warn('QuoteFlow response sync:',error.message);return}
+    let changed=false;
+    for(const row of (rows||[])){const estimateId=row.quote_data?.estimate?.id;const response=row.response;if(!estimateId||!['Accepted','Declined'].includes(response))continue;const estimate=data.estimates.find(e=>e.id===estimateId);if(estimate&&estimate.status!==response){estimate.status=response;estimate.updatedAt=new Date().toISOString();changed=true}}
+    if(changed){localStorage.setItem(KEY,JSON.stringify(data));await saveWorkspaceToCloud()}
+  }
+})();
+</script>
+</body>
+</html>
